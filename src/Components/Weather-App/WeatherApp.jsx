@@ -31,7 +31,9 @@ const WeatherApp = () => {
       const data = await response.json();
 
       console.log(data);
-      setLiveData(data);
+      if(data?.name) {
+        setLiveData(data);
+      }
 
       if (data?.weather[0]?.main == "Clouds") {
         setWeatherIcon(cloud_icon);
@@ -77,6 +79,7 @@ const WeatherApp = () => {
         <div
           className="search-icon"
           onClick={() => {
+            
             setSearchText(inputText);
           }}
         >
