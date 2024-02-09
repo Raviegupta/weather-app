@@ -1,0 +1,13 @@
+.sunrise{
+    /* border: 2px solid yellow; */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.sunrise p {
+    margin: 3px;
+}
+.sunrise h3 {
+    margin: 0;
+}

@@ -5,11 +5,15 @@ import search_icon from "../Assets/search.png";
 import clear_icon from "../Assets/clear.png";
 import cloud_icon from "../Assets/cloud.png";
 import drizzle_icon from "../Assets/drizzle.png";
-import humidity_icon from "../Assets/humidity.png";
 import rain_icon from "../Assets/rain.png";
 import snow_icon from "../Assets/snow.png";
-import wind_icon from "../Assets/wind.png";
 import thunderstorm_icon from "../Assets/thunderstorm.png";
+
+import Sunrise from "../Sunrise/Sunrise";
+import Sunset from "../Sunset/Sunset";
+import Weather from "../Weather/Weather";
+import Humidity from "../Humidity/Humidity";
+import WindSpeed from "../WindSpeed/WindSpeed";
 
 const WeatherApp = () => {
   const API_KEY = process.env.REACT_APP_API_KEY;
@@ -86,30 +90,15 @@ const WeatherApp = () => {
           <img src={search_icon} alt="" />
         </div>
       </div>
-
-      <div className="weather-image">
-        <img src={weatherIcon} alt="" />
+      <div className="date">{Date()}</div>
+      <div className="main-container">
+        <Sunrise timeStamp={liveData?.sys?.sunrise}/>
+        <Weather weatherIcon={weatherIcon} cityName={liveData?.name} temp={liveData?.main?.temp} temp_min={liveData?.main?.temp_min} temp_max={liveData?.main?.temp_max} />
+        <Sunset timeStamp={liveData?.sys?.sunset}/>
       </div>
-      <div className="weather-temp">{liveData?.main?.temp}° C</div>
-      <div className="weather-location">{liveData?.name}</div>
-
       <div className="data-container">
-        <div className="element">
-          <img src={humidity_icon} alt="" className="icon" />
-          <div className="data">
-            <div className="humidity-percent">{liveData?.main?.humidity} %</div>
-            <div className="text">Humidity</div>
-          </div>
-        </div>
-        <div className="element">
-          <img src={wind_icon} alt="" className="icon" />
-          <div className="data">
-            <div className="humidity-percent">
-              {liveData?.wind?.speed} km/hr
-            </div>
-            <div className="text">Wind Speed</div>
-          </div>
-        </div>
+        <Humidity humidity={liveData?.main?.humidity}/>
+        <WindSpeed windspeed={liveData?.wind?.speed}/> 
       </div>
     </div>
   );
